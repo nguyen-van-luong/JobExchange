@@ -19,6 +19,7 @@ class AddressItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 16),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(provinceName + ": ", style: const TextStyle(fontSize: 16, color: Colors.black87)),
             Text(address,

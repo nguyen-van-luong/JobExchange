@@ -1,10 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:job_exchange/ui/views/CV/cv_view.dart';
 import 'package:job_exchange/ui/views/employer/employer_view.dart';
+import 'package:job_exchange/ui/views/job/job_view.dart';
 import 'package:job_exchange/ui/views/login/login_view.dart';
 import 'package:job_exchange/ui/views/register/register_employer_view.dart';
 import 'package:job_exchange/ui/views/register/register_student_view.dart';
+import 'package:job_exchange/ui/views/student/student_view.dart';
 import 'package:job_exchange/ui/widgets/screen_with_header_and_footer.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -70,9 +73,60 @@ final appRouter = GoRouter(
                 )
               ));
         }),
+    GoRoute(
+      path: '/viewsearch',
+      pageBuilder: (context, state) => const MaterialPage<void>(
+        key: ValueKey('viewsearch'),
+        child: ScreenWithHeaderAndFooter(
+          body: JobView(params: {}),
+        ),
+      ),),
+    GoRoute(
+        path: '/viewsearch/:query',
+        pageBuilder: (context, state) {
+          return MaterialPage<void>(
+              key: ValueKey('viewsearch'),
+              child: ScreenWithHeaderAndFooter(
+                body: JobView(
+                    params: convertQuery(
+                        query: state.pathParameters["query"] ?? ""),
+                ),
+              ));
+        }),
+    GoRoute(
+        path: '/student/cv',
+        pageBuilder: (context, state) {
+          return MaterialPage<void>(
+              key: const ValueKey("student_cv"),
+              child: ScreenWithHeaderAndFooter(
+                  body: StudentView(
+                    indexSelected: 1,
+                    params: convertQuery(query: ""),
+                  )
+              ));
+        }),
+    GoRoute(
+      path: '/cv/viewsearch',
+      pageBuilder: (context, state) => const MaterialPage<void>(
+        key: ValueKey('cv_viewsearch'),
+        child: ScreenWithHeaderAndFooter(
+          body: CVView(params: {}),
+        ),
+      ),),
+    GoRoute(
+        path: '/cv/viewsearch/:query',
+        pageBuilder: (context, state) {
+          return MaterialPage<void>(
+              key: ValueKey('cv_viewsearch'),
+              child: ScreenWithHeaderAndFooter(
+                body: CVView(
+                  params: convertQuery(
+                      query: state.pathParameters["query"] ?? ""),
+                ),
+              ));
+        }),
   ]
 );
-
 Map<String, String> convertQuery({required String query}) {
   Map<String, String> params = {};
   query.split("&").forEach((param) {

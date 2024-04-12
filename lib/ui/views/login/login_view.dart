@@ -41,12 +41,14 @@ class _LoginViewState extends State<LoginView> {
             if(state is LoginSuccess) {
               appRouter.go("/");
             }
-            else if(state is LoginFailure) {
-              showTopRightSnackBar(context, state.message, state.notifyType);
-            }
           },
           child: BlocBuilder<LoginBloc, LoginState>(
             builder: (context, state) {
+              if(state is LoginFailure) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  showTopRightSnackBar(context, state.message, state.notifyType);
+                });
+              }
               return Scaffold(
                 body: LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
@@ -143,7 +145,9 @@ class _LoginViewState extends State<LoginView> {
                                       style: ButtonStyle(
                                           backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 0, 86, 143))
                                       ),
-                                      onPressed: () => _bloc.add(LoginSubmitEvent(username: _usernameController.text, password: _passwordController.text)),
+                                      onPressed: () {
+                                        _bloc.add(LoginSubmitEvent(username: _usernameController.text, password: _passwordController.text));
+                                      },
                                       child: Text('Đăng nhập', style: TextStyle(color: Colors.white),),
                                     ),
                                   ),

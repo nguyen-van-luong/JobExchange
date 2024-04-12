@@ -30,16 +30,13 @@ class _EmployerViewState extends State<EmployerView> {
   Widget build(BuildContext context) {
     listNavigation = getNavigation;
     listNavigation[widget.indexSelected].isSelected = true;
-    return Container(
-      color: Color.fromARGB(255, 238, 238, 238),
+    return IntrinsicHeight(
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SingleChildScrollView(
-            child: LeftMenu(listSelectBtn: listNavigation),
-          ),
+          LeftMenu(listSelectBtn: listNavigation),
           Expanded(
             child: listNavigation[widget.indexSelected].widget,
           ),

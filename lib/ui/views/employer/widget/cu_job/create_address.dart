@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_exchange/models/province.dart';
+import 'package:job_exchange/ui/common/utils/widget.dart';
 
-import '../../../../../dtos/address.dart';
 import '../../../../common/utils/text_field_custom.dart';
 
 class CreateAddress extends StatefulWidget {
@@ -23,18 +23,24 @@ class _CreateAddressState extends State<CreateAddress> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Row(
-          children: [
-            SizedBox(
-              width: 120,
-              child: Text("Tỉnh/Thành phố"),
-            ),
-            proviceDropDown()
-          ],
+        Expanded(
+          flex: 2,
+          child: Row(
+            children: [
+              SizedBox(
+                width: 120,
+                child: Text("Tỉnh/Thành phố"),
+              ),
+              proviceDropDown(widget.provinces, provinceController, "Chọn", (Province? province) {selectedProvince = province;})
+            ],
+          ),
         ),
-        Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: textFieldCustom("Chi tiết dịa chỉ", addressController),
+        Expanded(
+          flex: 2,
+          child: Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: textFieldCustom("Chi tiết địa chỉ", textField(addressController)),
+          ),
         ),
         SizedBox(
           width: 100,
@@ -53,43 +59,6 @@ class _CreateAddressState extends State<CreateAddress> {
           ),
         )
       ],
-    );
-  }
-
-  Widget proviceDropDown() {
-    final List<DropdownMenuEntry<Province>> provinceEntries = widget.provinces.map((Province province) {
-      return DropdownMenuEntry<Province>(
-        value: province,
-        labelWidget: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '${province.name}',
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Colors.black87,
-              ),
-              maxLines: 1,
-            ),
-          ],
-        ),
-        label: province.name,
-      );
-    }).toList();
-
-    return DropdownMenu<Province>(
-      controller: provinceController,
-      enableFilter: true,
-      initialSelection: null,
-      inputDecorationTheme: const InputDecorationTheme(
-        floatingLabelBehavior: FloatingLabelBehavior.never,
-      ),
-      hintText: "Chọn tỉnh/thành phố",
-      dropdownMenuEntries: provinceEntries,
-      onSelected: (Province? province) {
-        selectedProvince = province;
-      },
     );
   }
 }

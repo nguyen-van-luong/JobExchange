@@ -28,7 +28,10 @@ class ScreenWithHeaderAndFooter extends StatelessWidget {
                   minHeight: headerHeight + 292,
                   minWidth: screenSize.width,
                 ),
-                child: body
+                child: Container(
+                  color: Color.fromARGB(255, 238, 238, 238),
+                  child: body,
+                )
               ),
               const Footer(),
             ],

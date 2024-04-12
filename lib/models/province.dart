@@ -38,7 +38,7 @@ class Province {
     return{
     'id':  this.id,
     'name': this.name,
-    'updatedAt':  this.updatedAt.toString()
+    'updatedAt':  this.updatedAt?.toIso8601String()
     };
   }
 }

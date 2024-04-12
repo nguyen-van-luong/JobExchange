@@ -33,4 +33,12 @@ class Industry {
       updatedAt: updatedAt ?? this.updatedAt,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return{
+      'id':  this.id,
+      'name': this.name,
+      'updatedAt':  this.updatedAt?.toIso8601String(),
+    };
+  }
 }

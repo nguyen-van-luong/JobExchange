@@ -39,4 +39,13 @@ class Specialization {
       updatedAt: updatedAt ?? this.updatedAt,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return{
+      'id':  this.id,
+      'industryId': this.industryId,
+      'name': this.name,
+      'updatedAt':  this.updatedAt?.toIso8601String()
+    };
+  }
 }

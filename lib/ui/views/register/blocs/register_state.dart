@@ -15,6 +15,9 @@ class RegisterFailure extends RegisterState {
   final NotifyType notifyType;
 
   RegisterFailure({required this.message, required this.notifyType});
+
+  @override
+  List<Object?> get props => [message, notifyType];
 }
 
 class RegisterEmployerInvalid extends RegisterState {
@@ -26,6 +29,9 @@ class RegisterEmployerInvalid extends RegisterState {
 
   RegisterEmployerInvalid(this.usernameInvalid, this.passwordInvalid,
       this.nameInvalid, this.emailInvalid, this.repasswordInvalid);
+
+  @override
+  List<Object?> get props => [usernameInvalid, passwordInvalid, nameInvalid, emailInvalid, repasswordInvalid];
 }
 
 class RegisterStudentInvalid extends RegisterState {
@@ -37,6 +43,9 @@ class RegisterStudentInvalid extends RegisterState {
 
   RegisterStudentInvalid(this.usernameInvalid, this.passwordInvalid,
       this.fullnameInvalid, this.emailInvalid, this.repasswordInvalid);
+
+  @override
+  List<Object?> get props => [usernameInvalid, passwordInvalid, fullnameInvalid, emailInvalid, repasswordInvalid];
 }
 
 class RegisterSuccess extends RegisterState {}
