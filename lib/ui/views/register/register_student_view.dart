@@ -66,7 +66,7 @@ class _RegisterStudentViewState extends State<RegisterStudentView> {
                                 padding: EdgeInsets.all(30),
                                 width: 480,
                                 color: Colors.white,
-                                child: Column(
+                                child: SingleChildScrollView(child: Column(
                                   children: <Widget>[
                                     const Padding(
                                       padding: EdgeInsets.fromLTRB(0, 0, 0, 60),
@@ -204,7 +204,7 @@ class _RegisterStudentViewState extends State<RegisterStudentView> {
                               ),
                             )
                         ),
-                      );
+                      ));
                     }),
               );
             },
