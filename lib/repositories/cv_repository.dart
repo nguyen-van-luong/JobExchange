@@ -13,6 +13,11 @@ class CVRepository {
     dio = Dio(BaseOptions(baseUrl: baseUrl));
   }
 
+  Future<Response<dynamic>> getById({required String id}) async {
+
+    return dio.get('/$id');
+  }
+
   Future<Response<dynamic>> save(CVDto cv) async {
     print(baseUrl);
     dio = JwtInterceptor().addInterceptors(dio);

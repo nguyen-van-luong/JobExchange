@@ -99,7 +99,7 @@ class CV {
       industrySpecializations: (json['industrySpecializations'] as List<dynamic>)
           .map((industrySpecialization) => IndustrySpecialization.fromJson(industrySpecialization))
           .toList(),
-      isPrivate: json['private'],
+      isPrivate: json['isPrivate'],
       updatedAt: DateTime.tryParse(json['updatedAt']) ?? DateTime.now(),
       description: json['description'],
       workExperience: json['workExperience'],
