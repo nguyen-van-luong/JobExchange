@@ -20,6 +20,11 @@ class JobRepository {
     return dio.post('/create', data: job.toJson());
   }
 
+  Future<Response<dynamic>> getById({required String id}) async {
+
+    return dio.get('/$id');
+  }
+
   Future<Response<dynamic>> getSearch({
         required String searchContent,
         required String? industry,

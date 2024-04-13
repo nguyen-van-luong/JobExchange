@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:job_exchange/ui/views/CV/cv_view.dart';
 import 'package:job_exchange/ui/views/employer/employer_view.dart';
 import 'package:job_exchange/ui/views/job/job_view.dart';
+import 'package:job_exchange/ui/views/job_detail/job_detail_view.dart';
 import 'package:job_exchange/ui/views/login/login_view.dart';
 import 'package:job_exchange/ui/views/register/register_employer_view.dart';
 import 'package:job_exchange/ui/views/register/register_student_view.dart';
@@ -123,6 +124,15 @@ final appRouter = GoRouter(
                   params: convertQuery(
                       query: state.pathParameters["query"] ?? ""),
                 ),
+              ));
+        }),
+    GoRoute(
+        path: '/job/:pid',
+        pageBuilder: (context, state) {
+          return MaterialPage<void>(
+              key: ValueKey('job_detail'),
+              child: ScreenWithHeaderAndFooter(
+                body: JobDetailView(id: state.pathParameters['pid']!)
               ));
         }),
   ]

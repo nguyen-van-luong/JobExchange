@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:job_exchange/ui/router.dart';
 import 'package:job_exchange/ui/widgets/user_avatar.dart';
 
 import '../../models/address.dart';
@@ -69,7 +70,7 @@ class JobFeedItem extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.only(top: 2, bottom: 4),
                   child: InkWell(
-                    onTap: () => null,
+                    onTap: () => appRouter.go("/job/${job.id}"),
                     hoverColor: Colors.black12,
                     child: Text(
                       job.title,
